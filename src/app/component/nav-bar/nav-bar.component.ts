@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeneralServiceService } from 'src/app/services/general-service.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-
+  constructor(public generalService: GeneralServiceService) { }
 }
+

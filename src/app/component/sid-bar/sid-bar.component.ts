@@ -56,10 +56,12 @@ export class SidBarComponent implements OnInit {
   getInitMenu(param?) {
     this.MainMenu = this.data
     this.MainMenu.forEach(element => {
+      console.log(element);
+      
       let obj = {
-        routeLink: element.For_url ? element.For_url : element.for_url1,
+        routeLink: element.routeLink ,
         icon: element.icon ? element.icon : 'fal fa-file-exclamation',
-        label: element.For_Item,
+        label: element.label,
         parent: element.For_Parent ?  element.For_Parent : null
       }
 
@@ -186,5 +188,18 @@ export class SidBarComponent implements OnInit {
   }
   clickedOutside(): void {
     this.isClickedItem = false;
+  }
+  toggleCollapse(): void {
+    if(this.modeSelected==4)
+      this.modeSelected = 2
+      else
+    this.modeSelected = 1
+
+    this.collapsed = !this.collapsed;
+    if (!this.collapsed)
+      this.isClickedItem = false
+    else
+      this.isClickedItem = true
+    // this.onToggleSideNav.emit({ collapsed: this.collapsed, screenWidth: this.screenWidth });
   }
 }

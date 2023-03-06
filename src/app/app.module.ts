@@ -7,6 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { SidBarComponent } from './component/sid-bar/sid-bar.component';
 import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { ClickOutsideDirective } from './services/click-outside.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AboutUsComponent } from './page/about-us/about-us.component';
+import { ContactUsComponent } from './page/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +17,14 @@ import { ClickOutsideDirective } from './services/click-outside.directive';
     HomeComponent,
     SidBarComponent,
     NavBarComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    AboutUsComponent,
+    ContactUsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
