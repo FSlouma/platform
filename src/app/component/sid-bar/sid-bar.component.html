@@ -1,0 +1,74 @@
+<div class="sidenav" 
+                        [ngClass]="{'sidenav-collapsed': collapsed || modeSelected == 4, 
+                                    'sidenav-hidden' : modeSelected == 2,
+                                     'sidenav-TableMode' : modeSelected == 3 }"
+                                     clickOutside (clickOutside)="clickedOutside()">
+    <div class="logo-container" *ngIf="modeSelected!=2">
+        <button class="logo" ><img   class="block" ></button>
+        <div class="logo-text" @fadeInOut *ngIf="collapsed ||  modeSelected == 3">Test</div>
+        <button class="btn-close" @rotate *ngIf="collapsed ||  modeSelected == 3" (click)="closeSidenav()">
+            <i class="fal fa-times close-icon"></i>
+        </button>      
+    </div>
+
+    <div class="flex items-center rounded-md bg-slate-50 mt-8 mx-4 py-1 "  *ngIf="modeSelected!=2">
+        <i class="fal fa-search text-slate-400 font-bold ml-2" [class]="!collapsed?'ml-4':''"></i>
+        <input  (keyup)="applyFilter($event)" placeholder="rechercher" type="text" *ngIf="collapsed"
+        class=" text-base bg-transparent w-full text-black focus:outline-none" >
+    </div>
+  
+    <div class="scrollwrap scrollwrap_delayed">
+   
+        <ul class="sidenav-nav">
+            <li class="sidenav-nav-item static" *ngFor="let data of Menu;index as i">
+                <a class="sidenav-nav-link"  
+                        *ngIf="data.items && data.items.length>0"
+                        >
+                    <i class="sidenav-link-icon" [class]="data.icon"></i>
+                    <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                        {{data.label}}
+                    </span>
+                    <i *ngIf="data.items && collapsed" class="menu-collapse-icon"
+                    [ngClass]="!data.expanded?'fal fa-angle-right':'fal fa-angle-down' "></i>
+                </a>
+    
+                <a class="sidenav-nav-link" 
+                *ngIf="!data.items || (data.items && data.items.length===0)"
+                [routerLink]="[data.routeLink]" 
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+                 >
+                <i class="sidenav-link-icon" [class]="data.icon"></i>
+                <span class="sidenav-link-text" @fadeInOut *ngIf="collapsed">
+                    {{data.label}}
+                </span>
+            </a>
+    
+            <div *ngIf="collapsed && data.items && data.items.length >0">
+                <!-- <app-sublevel-menu
+                #sublevelmenu
+                (active)="output($event)"
+                [data]="data"
+                [collapsed]="collapsed"
+                [multiple]="multiple"
+                [expanded]="data.expanded"
+                >
+                </app-sublevel-menu> -->
+    
+            </div>
+
+            <div   #SubMenu>
+                <!-- <span class="absolute right-0 text-black font-bold  w-6 h-6" (click)="closeSublevelWheneNotCollapsed()"><i class="fas fa-times"></i></span> -->
+                <div class=" absolute left-[5.2rem]  top-[4rem] flex space-y-3  h-fit pr-3 bg-slate-100 rounded-lg  max-h-[85vh] overflow-y-auto overflow-x-hidden styleScroll">
+                  
+                </div>
+    
+            </div>
+            </li>
+        </ul>
+
+    </div>
+    
+</div>
+
+
