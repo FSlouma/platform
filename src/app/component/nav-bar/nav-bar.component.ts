@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { GeneralServiceService } from 'src/app/services/general-service.service';
+import { SharingDataService } from 'src/app/services/sharing-data.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,6 +8,12 @@ import { GeneralServiceService } from 'src/app/services/general-service.service'
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent {
-  constructor(public generalService: GeneralServiceService) { }
+  modeCollapsedinMobile = { mode_index: 4, mode_value: 'Mode colapsed mobile' }
+  constructor(public generalService: GeneralServiceService, private sharingData: SharingDataService) { }
+  publishModeLayout(mode) {
+    this.sharingData.putdataToStream(mode)
+    console.log(mode);
+    
+  }
 }
 

@@ -1,6 +1,6 @@
 <div class="fixed inset-0 w-full">
   <div class="flex">
-    <app-sid-bar *ngIf="!generalService.isVersionPortable(913)" #sidenav></app-sid-bar>
+    <app-sid-bar *ngIf="showSide" #sidenav></app-sid-bar>
     <div class="h-[100vh] w-full  bg-gray-100   sm:w-full">
       <app-nav-bar></app-nav-bar>
       <router-outlet #outlet></router-outlet>
